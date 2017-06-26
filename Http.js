@@ -24,21 +24,21 @@ var Http = (function() {
 	 */
 	function extend(currentObj, newObj) {
 		var extended = {};
-	    var prop;
+	    	var prop;
 
-	    for(prop in currentObj) {
-	        if(Object.prototype.hasOwnProperty.call(currentObj, prop)) {
-	            extended[prop] = currentObj[prop];
-	        }
+		for(prop in currentObj) {
+			if(Object.prototype.hasOwnProperty.call(currentObj, prop)) {
+				extended[prop] = currentObj[prop];
+			}
 		}
 
-	    for(prop in newObj) {
-	        if(Object.prototype.hasOwnProperty.call(newObj, prop)) {
-	            extended[prop] = newObj[prop];
-	        }
+	    	for(prop in newObj) {
+	        	if(Object.prototype.hasOwnProperty.call(newObj, prop)) {
+	            		extended[prop] = newObj[prop];
+	        	}
 		}
 
-	    return extended;
+	    	return extended;
 	}
 
 	/**
@@ -85,8 +85,8 @@ var Http = (function() {
 		}
 
 		var queryString = Object.keys(options.data).map(function(key) {
-	        return encodeURIComponent(key) + '=' + encodeURIComponent(options.data[key]);
-    	}).join('&');
+	        	return encodeURIComponent(key) + '=' + encodeURIComponent(options.data[key]);
+    		}).join('&');
 
 		xhr.send(queryString);
 
@@ -125,15 +125,15 @@ var Http = (function() {
 		}
 
 		xhr.onreadystatechange = function() {
-		    if(this.readyState == 4 && (this.status >= 200 || this.status <= 204)) {
-		       	if(options.hasOwnProperty('success') && typeof options.success == 'function') {
-		       		options.success(JSON.parse(this.response));
+			if(this.readyState == 4 && (this.status >= 200 || this.status <= 204)) {
+		    		if(options.hasOwnProperty('success') && typeof options.success == 'function') {
+		       			options.success(JSON.parse(this.response));
 		   			
 		   			if(options.hasOwnProperty('after') && typeof options.after == 'function') {
-		       			options.after(this.response);
+		       				options.after(this.response);
 		   			}
 		   		} 
-		    }
+		  	}
 		}
 
 		xhr.onerror = function(message) {console.log(this);
@@ -141,8 +141,7 @@ var Http = (function() {
 				options.error(message);
 			}
 		}
-
-	
+		
 		xhr.send(null);
 			
 		return options;
